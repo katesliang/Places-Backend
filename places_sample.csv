@@ -1,0 +1,159 @@
+longitude,latitude,name,type,status
+-76.4758883,42.4536893,Appel Commons vending machines,vending_machine,open
+-76.4776999,42.455829,RPCC vending machines,vending_machine,open
+-76.476533,42.4488261,Mann Library vending machines - front entrance,vending_machine,open
+-76.4793795,42.4489399,Roberts hall vending machine,vending_machine,open
+-76.4782602,42.4491804,Caldwell Hall vending machines - 1st and 2nd floor,vending_machine,open
+-76.4794226,42.4482083,Kennedy Hall vending machines - 2nd floor,vending_machine,open
+-76.4815833,42.4498027,PSB vending machines - under the stairs,vending_machine,open
+-76.4821992,42.4454741,Statler Hall vending machines - turn left into the study room,vending_machine,open
+-76.482612,42.4448553,Duffield vending machines,vending_machine,open
+-76.478847,42.445713,Teagle vending machine - 1st floor,vending_machine,open
+-76.482233,42.4448289,Phillips Hall vending machine - 3rd floor,vending_machine,open
+-76.4812149,42.4449513,Gates Hall vending machine - basement,vending_machine,open
+-76.4800605,42.4482841,Malott Hall vending machines,vending_machine,open
+-76.4856208,42.4440367,Law School vending machine,vending_machine,open
+-76.4878576,42.4465291,Noyes vending machines - basement,vending_machine,open
+-76.4894343,42.4481604,Becker Vending machine - basement,vending_machine,open
+-76.4855643,42.4464617,WSH vending machines - near entrance to garden room stairs,vending_machine,open
+-76.491771,42.4399713,Schuyler House - vending machines 1st floor,vending_machine,open
+-76.4809784,42.4471807,Free menstrual products - basement bathroom,vending_machine,open
+-76.4795213,42.4536488,Balch Hall vending machines - ground floor,vending_machine,closed
+-76.4779432,42.4541365,CKB vending machines,vending_machine,closed
+-76.4767967,42.4561317,High rise 5 vending machines,vending_machine,closed
+-76.4761642,42.456362,Low rise 6 vending machines,vending_machine,closed
+-76.477707,42.4550092,Donlon hall vending machines,vending_machine,closed
+-76.4866422,42.4425281,"Cascadilla Hall vending machines - ground floor, gorge side entrance",vending_machine,closed
+-76.48364725,42.44758493,"Olin Library, SE Corner by Stimson Hall",blue_light,open
+-76.48300312,42.44745398,"Day Hall, Directory",blue_light,open
+-76.48118859,42.44745572,"Ives, Catherwood Plaza, along Tower Rd.",blue_light,open
+-76.48393692,42.44504031,"Carpenter Hall, Directory",blue_light,open
+-76.4816963,42.44511558,"Barton Hall, SW Corner",blue_light,open
+-76.47995751,42.44536234,"Barton Hall, SE Corner",blue_light,open
+-76.4841081,42.44359533,"Bard Hall, SW Corner, Footbridge",blue_light,open
+-76.47663543,42.44409989,"Kite Hill, East of Stadium",blue_light,open
+-76.4781201,42.44513344,"Schoelkopf Field, Portal-X",blue_light,open
+-76.47178355,42.44560438,"Riley-Robb Hall, SW Corner",blue_light,open
+-76.46940659,42.4454014,Judd Falls & Campus Rd. (Morrison Lot),blue_light,open
+-76.46526475,42.44556509,"Tower Rd. Extension, Directory",blue_light,open
+-76.46202738,42.44639842,"B Lot, SE Bus Stop",blue_light,open
+-76.46341639,42.44809477,"Vet School, Annex, `T? Barn, East Side",blue_light,open
+-76.47046542,42.44763531,"Tower Rd., South of Peterson Lot",blue_light,open
+-76.47237393,42.44775482,"Traffic Booth #2, Pull-Off, by Stocking",blue_light,open
+-76.47522417,42.44853145,"Fernow Hall, North Side on Bldg.",blue_light,open
+-76.47609694,42.44739088,"Alumni Field, Parking Lot",blue_light,open
+-76.47624921,42.44766871,"Plant Science Greenhouses, Tower Rd.",blue_light,open
+-76.48609577,42.45164491,"Suspension Bridge, South End",blue_light,open
+-76.48375789,42.44985196,"Lincoln Hall, SW Corner",blue_light,open
+-76.48554526,42.44887512,"Morrill Hall, NW Corner",blue_light,open
+-76.47785005,42.44846198,"Plant Science, NW Corner, on Ag Quad",blue_light,open
+-76.47942878,42.45007143,"Martha Van Rensselaer Hall, NW Corner",blue_light,open
+-76.47993621,42.45152844,"Beebe Lake, West End, South Side",blue_light,open
+-76.48112683,42.45202045,"Alumni House, Directory",blue_light,open
+-76.47911973,42.45416668,"Dickson Hall, Courtyard (near Balch)",blue_light,open
+-76.47788431,42.45554659,"North Campus #1, East Side",blue_light,open
+-76.47536143,42.45815985,"A Lot, East Bus Stop",blue_light,open
+-76.48124761,42.45637346,"Jessup Rd. & Triphammer Rd., Bus Stop",blue_light,open
+-76.48359225,42.45074597,"Arts Quad, Northeast, near Lincoln Hall",blue_light,open
+-76.48377942,42.45144579,"Foundry, South Side of Building",blue_light,open
+-76.48584164,42.45134096,North Central & University Ave.,blue_light,open
+-76.48857224,42.44392574,Stewart Ave. & Edgemoor Lane,blue_light,open
+-76.48692034,42.44412412,"Hughes Hall, Lower Parking Lot",blue_light,open
+-76.48617246,42.44354006,"Hughes Hall, South Walkway, by Dining",blue_light,open
+-76.48530604,42.44284829,"Performing Arts Center,Cascadilla Brdg.",blue_light,open
+-76.48643546,42.44234,"Cascadilla Hall, SE Corner",blue_light,open
+-76.48204117,42.45776009,"Africana Studies, 310 Triphammer Rd.",blue_light,open
+-76.4772389,42.45805177,"A Lot, West Bus Stop",blue_light,open
+-76.48073572,42.45391784,Wait Ave.,blue_light,open
+-76.48070342,42.45505604,Triphammer Rd. and Sisson Place,blue_light,open
+-76.47652725,42.4549435,"Mews, North End",blue_light,open
+-76.47824046,42.45316318,NW CRNR Helen Newman /Cradit Farm Dr.,blue_light,open
+-76.47465052,42.45262653,"Feurtes Observatory, South Side",blue_light,open
+-76.47634395,42.45400708,"Mews, Southeast",blue_light,open
+-76.47399762,42.45550287,"Cradit Farm Drive, East",blue_light,open
+-76.47295809,42.45621754,"Hasbrouck Apartments, By 0301",blue_light,open
+-76.47243116,42.4569918,"Hasbrouck Apartments, By 1601",blue_light,open
+-76.47151345,42.456472,"Hasbrouck Apartments, By Laundry",blue_light,open
+-76.47173568,42.45555789,"Hasbrouck Apartments, By 2201",blue_light,open
+-76.46655648,42.44645254,BTI Parking Lot East End,blue_light,open
+-76.47410233,42.44938367,Plantations Rd. & Forest Home Drive,blue_light,open
+-76.47408556,42.44904178,"Beebe Hall Exterior,1st floor level northeast cor*",blue_light,open
+-76.47371765,42.44823241,Rice Hall  Dr NEast End,blue_light,open
+-76.47618401,42.44931283,"Mann Library, Northwest on Path",blue_light,open
+-76.47952563,42.45082871,Forest Home Drive by MVR,blue_light,open
+-76.48496565,42.44702941,Ho Plaza,blue_light,open
+-76.4798721,42.44751059,"Tower Rd. & Garden Ave., SW Corner",blue_light,open
+-76.48802064,42.44979727,"McGraw Place, 103 - Watermargin",blue_light,open
+-76.4896447,42.44857945,Carl Becker House Breezeway,blue_light,open
+-76.49027274,42.449082,Stewart & University Aves.,blue_light,open
+-76.49112152,42.44922585,"VonCramm, along University Ave.",blue_light,open
+-76.49196883,42.44815904,Southeast Corner University Av  Parking Lot,blue_light,open
+-76.48925321,42.44298148,Stewart & Williams Parking Lot,blue_light,open
+-76.48563196,42.44572485,"Gannett Clinic, Emergency Door",blue_light,open
+-76.47942041,42.44371135,"Parking Garage, Level 1, North End",blue_light,open
+-76.47942041,42.44371135,"Parking Garage, Level 2, North End",blue_light,open
+-76.47942041,42.44371135,"Parking Garage, Level 3, North End",blue_light,open
+-76.47942041,42.44371135,"Parking Garage, Level 4, North End",blue_light,open
+-76.4808802,42.44257984,"Cascadilla Gorge, Tennis Court",blue_light,open
+-76.47457609,42.44109057,"Maplewood Apartments, North",blue_light,open
+-76.47558843,42.44167432,"120 Maple Ave., Northeast Corner",blue_light,open
+-76.47059776,42.443833,Corner of Route 366 & Pine Tree Rd,blue_light,open
+-76.47328335,42.45182902,"Beebe Lake, East End at Stone Bridge",blue_light,open
+-76.48844991,42.44671272,South of Bethe House near Forest Park Lane,blue_light,open
+-76.48834968,42.44717502,Behind McFaddin/off the NE Corner of Bethe Hse,blue_light,open
+-76.48774243,42.44784464,West Ave. at Lyon Hall,blue_light,open
+-76.49020863,42.44781905,Stewart Ave.West of Carl Becker House,blue_light,open
+-76.49049668,42.44785169,Stewart Av. walkway near 640 Stewart,blue_light,open
+-76.49173602,42.4490628,Northeast Corner University Av  Parking Lot,blue_light,open
+-76.4893426,42.44837636,Carl Becker House East Quad,blue_light,open
+-76.47942015,42.44456333,"Parking Garage, Level 1, South End",blue_light,open
+-76.47942015,42.44456333,"Parking Garage, Level 2, South End",blue_light,open
+-76.47942015,42.44456333,"Parking Garage, Level 3, South End",blue_light,open
+-76.47942015,42.44456333,"Parking Garage, Level 4, South End",blue_light,open
+-76.47676103,42.45715089,"Townhouse D, SE Corner",blue_light,open
+-76.45005958,42.45129812,"State Fleet Garage, On Wall by Entrance",blue_light,open
+-76.48106429,42.44628975,"Barton Hall, CUP Division Lot",blue_light,open
+-76.48419105,42.44415739,"Bard Hall, NW corner",blue_light,open
+-76.48753824,42.446423,Campus Rd & West Ave in Front of Noyes Center,blue_light,open
+-76.48800573,42.44592575,New Noyes Cntr Basketball Court SW Corner,blue_light,open
+-76.48423956,42.44315472,Trolley Bridge,blue_light,open
+-76.47942015,42.44456333,Parking Garage 5th Floor North,blue_light,open
+-76.47942041,42.44371135,Parking Garage 5th Floor South,blue_light,open
+-76.47377126,42.45337658,Cradit Farm Drive near tennis courts,blue_light,open
+-76.47444928,42.4537863,Appel Community Commons Lot,blue_light,open
+-76.47511066,42.44890301,"Mann Library, Northeast on Path",blue_light,open
+-76.46395759,42.43409475,Equestrian Center,blue_light,open
+-76.45112309,42.43812012,McGovern Fields Game Farm Rd,blue_light,open
+-76.47214537,42.43794105,"Maplewoods Apartments, South",blue_light,open
+-76.47336483,42.43953928,"Maplewood Apartments, Middle",blue_light,open
+-76.48039274,42.44301027,"Rhodes Hall, Southeast Corner",blue_light,open
+-76.48918267,42.44874046,Gothics Way,blue_light,open
+-76.47378121,42.44440088,Old Oxley Parking Lot West,blue_light,open
+-76.46654355,42.44714386,Tower Rd Outside VRT/ECRF,blue_light,open
+-76.46549271,42.44665289,VMC/ECRF Loading dock,blue_light,open
+-76.48299495,42.44372172,Upson Hall Southwest Corner,blue_light,open
+-76.4741054,42.4488274,"Beebe Hall Exterior,2nd level southeast corner of*",blue_light,open
+-76.45319183,42.42740589,Snyder Hill North of Wildlife Bld,blue_light,open
+-76.45429575,42.42831933,West side of Baker Institute,blue_light,open
+-76.48817118,42.44791846,Flora Rose east side/ west of Mennon,blue_light,open
+-76.48891365,42.44789894,Flora Rose Pavilion West,blue_light,open
+-76.48992375,42.44726436,Keaton House NW corner,blue_light,open
+-76.49006795,42.44625916,East side Stewart Ave At Cornell St.,blue_light,open
+-76.48928293,42.44634911,North end Maryann Wood Dr.,blue_light,open
+-76.44903831,42.48192161,Ornithology Overflow lot or the Hawk Barn Lot,blue_light,open
+-76.44944687,42.48052843,Ornithology Staff Lot/ Boardwalk Parragon Lot,blue_light,open
+-76.45027026,42.47985786,Ornithology Handicap Lot/ SE Parking Lot,blue_light,open
+-76.48201714,42.44438448,"Phillips, Exterior  Loading Dock",blue_light,open
+-76.47792236,42.44607798,NW Corner by Lynah,blue_light,open
+-76.47798701,42.4506895,HEB NE driveway,blue_light,open
+-76.48209765,42.4487526,Physical Science Bld,blue_light,open
+-76.47814245,42.45058356,MVR Parking Garage-2nd level east,blue_light,open
+-76.47892759,42.45063924,MVR Parking Garage-2nd level west,blue_light,open
+-76.4788795,42.45058981,MVR Parking Garage- 1st Level west,blue_light,open
+-76.4788795,42.45058981,MVR Parking Garage-3rd level west,blue_light,open
+-76.4782133,42.45066512,MVR parking Garage-1st level east,blue_light,open
+-76.47813999,42.45067117,MVR Parking Garage-3rd level east,blue_light,open
+-76.47308972,42.4491542,Plantation Welcome Center,blue_light,open
+-76.46373323,42.44853867,NYS Vet Diagonstic Lab,blue_light,open
+-76.48606178,42.45244616,"Suspension Bridge,North End",blue_light,open
+-76.48975319,42.45204551,Upper Stewart Ave Bridge over Fall Creek,blue_light,open
