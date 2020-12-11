@@ -1,6 +1,7 @@
 # import json
 
 from src import db
+from src.api.reviews.models import Review
 from src.api.places.models import Place
 from sqlalchemy import func
 
@@ -13,6 +14,12 @@ def get_all_places():
 
 def get_place_by_id(place_id):
     return Place.query.filter_by(id=place_id).first()
+
+
+def get_rating_by_id(place_id):
+    return (
+        db.session.query(func.avg(Review.rating)).filter_by(place_id=place_id).scalar()
+    )
 
 
 def get_place_by_name(place_name):

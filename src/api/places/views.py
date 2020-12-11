@@ -10,6 +10,7 @@ from src.api.places.crud import (  # isort:skip
     update_place,
     delete_place,
     get_knearest_places,
+    get_rating_by_id,
 )
 
 places_namespace = Namespace("places")
@@ -138,6 +139,19 @@ class PlacesSearches(Resource):
         return res, 200
 
 
+class PlaceRating(Resource):
+    def get(self, place_id):
+        """Returns average rating for given place id. 0 if there are no ratings."""
+        response_object = {}
+        place = get_place_by_id(place_id)
+
+        if not place:
+            places_namespace.abort(404, f"Place {place_id} does not exist")
+        rating = get_rating_by_id(place_id)
+        return {"rating": int(rating)}, 200
+
+
 places_namespace.add_resource(PlacesList, "")
 places_namespace.add_resource(Places, "/<int:place_id>")
 places_namespace.add_resource(PlacesSearches, "/<string:place_types>")
+places_namespace.add_resource(PlaceRating, "/rating/<int:place_id>")

@@ -2,10 +2,7 @@ from flask_admin.contrib.sqla import ModelView
 
 
 class PlacesAdminView(ModelView):
-    column_searchable_list = (
-        "name",
-        "types"
-    )
+    column_searchable_list = ("name", "types")
     column_editable_list = (
         "name",
         "lat",

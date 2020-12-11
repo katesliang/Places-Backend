@@ -8,3 +8,8 @@ GeoAlchemy2==0.8.4
 geos==0.2.2
 Shapely==1.7.1
 requests==2.25.0
+boto3
+botocore
+Pillow
+s3transfer
+urllib3
