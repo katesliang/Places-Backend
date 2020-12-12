@@ -29,7 +29,11 @@ def seed_db():
     for data in mdata:
         db.session.add(
             Place(
-                lat=data["lat"], lon=data["lon"], name=data["name"], types=data["types"]
+                lat=data["lat"],
+                lon=data["lon"],
+                name=data["name"],
+                types=data["types"],
+                image_url=data["image_url"],
             )
         )
     db.session.commit()

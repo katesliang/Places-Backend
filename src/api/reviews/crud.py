@@ -1,6 +1,5 @@
 from src import db
 from src.api.reviews.models import Review
-from sqlalchemy import func
 
 
 def get_all_reviews():

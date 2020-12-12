@@ -7,16 +7,7 @@ from src import db
 import bcrypt
 import hashlib
 import datetime
-import src.api.places.models as places
 
-# places.Place
-
-# assoc_favorites = db.Table(
-#     "assoc_favorites",
-#     db.Model.metadata,
-#     db.Column("user_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),
-#     db.Column("place_id", db.Integer, db.ForeignKey("places.id"), primary_key=True),
-# )
 
 assoc_favorites = db.Table(
     "assoc_favorites",

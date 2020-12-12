@@ -1,6 +1,26 @@
 import requests
 
-location_types = ["Blue", "AllGender", "Water", "TCAT", "Bikes", "Charging", "FoodServices", "Parkmobile"]
+location_types = [
+    "Blue",
+    "AllGender",
+    "Water",
+    "TCAT",
+    "Bikes",
+    "Charging",
+    "FoodServices",
+    "Parkmobile",
+]
+
+img_urls = {
+    "Blue": "https://cornell-places-assets.s3.amazonaws.com/bluelight.jpg",
+    "AllGender": "https://cornell-places-assets.s3.amazonaws.com/all_gender.jpg",
+    "Water": "https://cornell-places-assets.s3.amazonaws.com/water.jpg",
+    "TCAT": "https://cornell-places-assets.s3.amazonaws.com/tcat.jpg",
+    "Bikes": "https://cornell-places-assets.s3.amazonaws.com/bikes.jpg",
+    "Charging": "https://cornell-places-assets.s3.amazonaws.com/charging.jpeg",
+    "FoodServices": "https://cornell-places-assets.s3.amazonaws.com/food_service.jpg",
+    "Parkmobile": "https://cornell-places-assets.s3.amazonaws.com/park_mobile.jpg",
+}
 
 
 def get_locationdata(ltype):
@@ -23,14 +43,14 @@ def get_locationdata(ltype):
     res = []
     for data in dlist:
         ndata = dict()
-        ndata["lat"] = data.get("Lat")
-        ndata["lon"] = data.get("Lng")
-        ndata["name"] = str(data.get("Name"))
-        if ndata["name"] == "None":
-            ndata["name"] = ''
-        ndata["types"] = ltype
-        res.append(ndata)
-
+        name = str(data.get("Name"))
+        if name is not None:
+            ndata["lat"] = data.get("Lat")
+            ndata["lon"] = data.get("Lng")
+            ndata["name"] = name
+            ndata["types"] = ltype
+            ndata["image_url"] = img_urls[ltype]
+            res.append(ndata)
     return res
 
 

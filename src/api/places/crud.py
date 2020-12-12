@@ -27,17 +27,18 @@ def get_place_by_name(place_name):
     return Place.query.filter_by(name=place_name).first()
 
 
-def add_place(lat, lon, name, types):
-    place = Place(lat=lat, lon=lon, name=name, types=types)
+def add_place(lat, lon, name, types, image_url):
+    place = Place(lat, lon, name, types, image_url)
     db.session.add(place)
     db.session.commit()
     return place
 
 
-def update_place(place, lat, lon, name, types):
+def update_place(place, lat, lon, name, types, image_url):
     place.coords = f"POINT({lon} {lat})"
     place.name = name
     place.types = types
+    place.image_url = image_url
     db.session.commit()
     return place
 
@@ -78,10 +79,9 @@ def get_knearest_places(lat, lon, types, m=-1, k=5):
 
         res = []
         for temppl in placesnearby:
-            if temppl != temp:
+            if (temppl != temp) and (temppl.types == types):
                 res.append(temppl)
-        # print(res)
-    # except:
+
     except Exception as e:
         print("exception: ", e)
 

@@ -1,4 +1,3 @@
-import sys
 from flask import request
 from flask_restx import Namespace, Resource, fields, reqparse, marshal
 from src.api.users.views import extract_token
@@ -130,7 +129,7 @@ class Reviews(Resource):
         if review is None:
             reviews_namespace.abort(404, f"Review {review_id} does not exist")
         elif user_id != review.user_id:
-            reviews_namespace.abort(400, f"Cannot edit other user's review")
+            reviews_namespace.abort(400, "Cannot edit other user's review")
 
         post_data = request.get_json()
         rating = post_data.get("rating")
@@ -168,7 +167,7 @@ class Reviews(Resource):
         if review is None:
             reviews_namespace.abort(404, f"Review {review_id} does not exist")
         elif user_id != review.user_id:
-            reviews_namespace.abort(400, f"Cannot delete other user's review")
+            reviews_namespace.abort(400, "Cannot delete other user's review")
 
         if not review:
             reviews_namespace.abort(404, f"Review {review_id} does not exist.")

@@ -1,18 +1,18 @@
 from flask import request
-from flask_restx import Namespace, Resource, fields, marshal
+from flask_restx import Namespace, Resource, fields
 import json
 
-from src.api.users.models import assoc_favorites
+# from src.api.users.models import assoc_favorites
 from src.api.places.crud import get_place_by_id
 from src.api.users.crud import (  # isort:skip
     get_all_users,
     get_user_by_email,
     get_user_by_session_token,
-    get_user_by_update_token,
+    # get_user_by_update_token,
     verify_credentials,
     renew_session,
     create_user,
-    update_user,
+    # update_user,
     add_favorite,
 )
 

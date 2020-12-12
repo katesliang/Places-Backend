@@ -24,6 +24,7 @@ place = places_namespace.model(
         "types": fields.String(required=True),
         "lat": fields.Float(required=True),
         "lon": fields.Float(required=True),
+        "image_url": fields.String(),
     },
 )
 
@@ -44,6 +45,7 @@ class PlacesList(Resource):
         lat = post_data.get("lat")
         name = post_data.get("name")
         types = post_data.get("types")
+        image_url = post_data.get("image_url")
         response_object = {}
 
         place = get_place_by_name(name)
@@ -51,7 +53,7 @@ class PlacesList(Resource):
             response_object["message"] = "Sorry. That place already exists."
             return response_object, 400
 
-        add_place(lat, lon, name, types)
+        add_place(lat, lon, name, types, image_url)
 
         response_object["message"] = f"{name} was added!"
         return response_object, 201
@@ -79,6 +81,7 @@ class Places(Resource):
         lon = post_data.get("lon")
         name = post_data.get("name")
         types = post_data.get("types")
+        image_url = post_data.get("image_url")
         response_object = {}
 
         place = get_place_by_id(place_id)
@@ -89,7 +92,7 @@ class Places(Resource):
             response_object["message"] = "Sorry. That place already exists."
             return response_object, 400
 
-        update_place(place, lat, lon, name, types)
+        update_place(place, lat, lon, name, types, image_url)
 
         response_object["message"] = f"{place.id} was updated!"
         return response_object, 200
@@ -142,12 +145,13 @@ class PlacesSearches(Resource):
 class PlaceRating(Resource):
     def get(self, place_id):
         """Returns average rating for given place id. 0 if there are no ratings."""
-        response_object = {}
         place = get_place_by_id(place_id)
 
         if not place:
             places_namespace.abort(404, f"Place {place_id} does not exist")
         rating = get_rating_by_id(place_id)
+        if rating is None:
+            rating = 0
         return {"rating": int(rating)}, 200
 
 
