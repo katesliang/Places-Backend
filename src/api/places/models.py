@@ -13,6 +13,12 @@ class Place(db.Model):
     lon = db.Column(db.Float, nullable=False)
     coords = db.Column(Geography(geometry_type="POINT", srid=4326), nullable=False)
     types = db.Column(db.VARCHAR(255), nullable=False)
+    # user_favorites = db.relationship(
+    #     "User",
+    #     secondary=assoc_favorites,
+    #     lazy="subquery",
+    #     backref=db.backref("places", lazy=True),
+    # )
 
     def __init__(self, lat, lon, name, types):
         self.coords = f"POINT({lat} {lon})"

@@ -2,6 +2,8 @@ from flask import request
 from flask_restx import Namespace, Resource, fields, marshal
 import json
 
+from src.api.users.models import assoc_favorites
+from src.api.places.crud import get_place_by_id
 from src.api.users.crud import (  # isort:skip
     get_all_users,
     get_user_by_email,
@@ -11,11 +13,15 @@ from src.api.users.crud import (  # isort:skip
     renew_session,
     create_user,
     update_user,
+    add_favorite,
 )
 
 users_namespace = Namespace("users")
 
-user_fields = {"email": fields.String, "created_date": fields.DateTime}
+user_fields = {
+    "email": fields.String,
+    "created_date": fields.DateTime,
+}
 
 user = users_namespace.model(
     "User",
@@ -59,8 +65,8 @@ class Users(Resource):
             response_object["message"] = "Unauthorized user."
             return response_object, 400
         users = get_all_users()
-        return marshal(users, user_fields), 200
-        # return list(map(lambda x: x.as_dict(), users)), 200
+        # return marshal(users, user_fields), 200
+        return list(map(lambda x: x.as_dict(), users)), 200
 
     @users_namespace.expect(user_post, validate=True)
     @users_namespace.response(201, "<user_email> was added!")
@@ -107,7 +113,7 @@ class UserRegister(Resource):
             response_object["message"] = "User already exists."
             return response_object, 400
 
-        return user.as_dict(), 200
+        return user.as_dict(), 201
 
 
 class UserSession(Resource):
@@ -132,7 +138,7 @@ class UserSession(Resource):
             "update_token": user.update_token,
         }
 
-        return token_set, 200
+        return token_set, 201
 
 
 class UserLogin(Resource):
@@ -156,10 +162,35 @@ class UserLogin(Resource):
             "session_token": user.session_token,
             "session_expiration": str(user.session_expiration),
             "update_token": user.update_token,
-        }
+        }, 201
+
+
+class UserFavorites(Resource):
+    @users_namespace.response(400, "Unauthroized token.")
+    def post(self, place_id):
+        """Returns all users."""
+        was_successful, session_token = extract_token(request)
+        response_object = {}
+        if not was_successful:
+            response_object["message"] = session_token
+            return response_object, 400
+        request_user = get_user_by_session_token(session_token)
+        if request_user is None:
+            response_object["message"] = "Unauthorized user."
+            return response_object, 400
+        place = get_place_by_id(place_id)
+        if place is None:
+            response_object["message"] = "Invalid place id."
+            return response_object, 400
+        # place_id and user is valid.
+        # assoc_favorites
+        add_favorite(request_user, place)
+        response_object["message"] = "Added location as favorite!"
+        return response_object, 201
 
 
 users_namespace.add_resource(Users, "")
 users_namespace.add_resource(UserLogin, "/login")
 users_namespace.add_resource(UserRegister, "/register")
 users_namespace.add_resource(UserSession, "/session")
+users_namespace.add_resource(UserFavorites, "/favorites/<int:place_id>")

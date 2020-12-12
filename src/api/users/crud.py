@@ -67,3 +67,8 @@ def renew_session(update_token):
     user.renew_session()
     db.session.commit()
     return user
+
+
+def add_favorite(user, place):
+    user.favorites.append(place)
+    db.session.commit()

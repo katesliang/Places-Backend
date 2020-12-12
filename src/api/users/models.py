@@ -7,6 +7,23 @@ from src import db
 import bcrypt
 import hashlib
 import datetime
+import src.api.places.models as places
+
+# places.Place
+
+# assoc_favorites = db.Table(
+#     "assoc_favorites",
+#     db.Model.metadata,
+#     db.Column("user_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),
+#     db.Column("place_id", db.Integer, db.ForeignKey("places.id"), primary_key=True),
+# )
+
+assoc_favorites = db.Table(
+    "assoc_favorites",
+    db.Model.metadata,
+    db.Column("user_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),
+    db.Column("place_id", db.Integer, db.ForeignKey("places.id"), primary_key=True),
+)
 
 
 class User(db.Model):
@@ -17,6 +34,13 @@ class User(db.Model):
     email = db.Column(db.String(128), nullable=False)
     password_digest = db.Column(db.String(255), nullable=False)
     created_date = db.Column(db.DateTime, default=func.now(), nullable=False)
+    favorites = db.relationship(
+        "Place",
+        secondary=assoc_favorites,
+        # lazy="dynamic",
+        # backref=db.backref("users", lazy=True),
+        backref="users",
+    )
     # Session information
     session_token = db.Column(db.String, nullable=False, unique=True)
     session_expiration = db.Column(db.DateTime, nullable=False)
@@ -60,6 +84,7 @@ class User(db.Model):
             "email": self.email,
             "session_token": self.session_token,
             "update_token": self.update_token,
+            "favorites": len(self.favorites),
         }
 
 
