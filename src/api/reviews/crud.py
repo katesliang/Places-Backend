@@ -32,7 +32,7 @@ def add_review(user_id, place_id, rating, text):
 
 def update_review(review, rating, text):
     review.rating = rating
-    revie.text = text
+    review.text = text
     db.session.commit()
     return review
 

@@ -1,0 +1,6 @@
+To Do List 
+
+3) auth routes
+4) places images
+5) places favorites
+6) CSRF 

@@ -13,3 +13,6 @@ botocore
 Pillow
 s3transfer
 urllib3
+bcrypt
+flask-cors
+
