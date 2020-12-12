@@ -20,11 +20,11 @@ def verify_credentials(email, password):
     return optional_user.verify_password(password), optional_user
 
 
-def create_user(email, password):
+def create_user(name, email, password):
     optional_user = get_user_by_email(email)
     if optional_user is not None:
         return False, optional_user
-    user = User(email=email, password=password)
+    user = User(name=name, email=email, password=password)
     db.session.add(user)
     db.session.commit()
     return True, user
