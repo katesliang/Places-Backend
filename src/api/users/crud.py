@@ -12,7 +12,7 @@ def get_user_by_email(email):
 
 
 def get_user_by_session_token(session_token):
-    return User.query.filter(User.session_token == session_token).first()
+    return User.query.filter_by(session_token=session_token).first()
 
 
 def get_user_by_update_token(update_token):
@@ -28,7 +28,7 @@ def add_user(email, password):
 
 def update_user(user, email, password):
     user.password_digest = bcrypt.hashpw(
-        password.encode("utf8"), bcrypt.gensalt(rounds=13)
+        password.encode("utf-8"), bcrypt.gensalt(rounds=13)
     )
     user.email = email
     db.session.commit()
@@ -40,7 +40,7 @@ def verify_credentials(email, password):
     if optional_user is None:
         return False, None
 
-    return optional_user.verify_password(password), optional_use
+    return optional_user.verify_password(password), optional_user
 
 
 def create_user(email, password):

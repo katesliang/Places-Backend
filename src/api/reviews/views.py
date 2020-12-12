@@ -1,5 +1,9 @@
+import sys
 from flask import request
-from flask_restx import Namespace, Resource, fields, reqparse
+from flask_restx import Namespace, Resource, fields, reqparse, marshal
+from src.api.users.views import extract_token
+from src.api.users.crud import get_user_by_session_token
+
 
 from src.api.reviews.crud import (
     get_all_reviews,
@@ -25,6 +29,15 @@ review = reviews_namespace.model(
         "created_date": fields.DateTime,
     },
 )
+
+review_fields = {
+    "id": fields.Integer,
+    "user_id": fields.Integer,
+    "place_id": fields.Integer,
+    "rating": fields.Integer,
+    "text": fields.String,
+    "created_date": fields.DateTime,
+}
 
 
 class ReviewsList(Resource):
@@ -53,12 +66,25 @@ class ReviewsList(Resource):
     @reviews_namespace.response(400, "Invalid rating value.")
     def post(self):
         """Creates a new review."""
+        # Extract token
+        was_successful, session_token = extract_token(request)
+        response_object = {}
+        if not was_successful:
+            response_object["message"] = session_token
+            return response_object, 400
+        # Check token validity
+        user = get_user_by_session_token(session_token)
+        if user is None:
+            response_object["message"] = "Invalid Token."
+            return response_object, 400
+        # Create / validate Review object
+        user_id = user.id
         post_data = request.get_json()
-        user_id = post_data.get("user_id")
         place_id = post_data.get("place_id")
         rating = post_data.get("rating")
         text = post_data.get("text")
         response_object = {}
+
         if None in [user_id, place_id, rating, text]:
             response_object["message"] = "Request body malformed."
             return response_object, 400
@@ -74,6 +100,7 @@ class ReviewsList(Resource):
 class Reviews(Resource):
     @reviews_namespace.marshal_with(review)
     @reviews_namespace.response(200, "Success")
+    @reviews_namespace.response(400, "Cannot edit other user's review")
     @reviews_namespace.response(404, "Review <review_id> does not exist")
     def get(self, review_id):
         """Returns a single review."""
@@ -82,24 +109,41 @@ class Reviews(Resource):
             reviews_namespace.abort(404, f"Review {review_id} does not exist")
         return review, 200
 
-    @reviews_namespace.expect(review, validate=True)
     @reviews_namespace.response(200, "Review updated successfully!")
     @reviews_namespace.response(404, "Review <review_id> does not exist.")
     def put(self, review_id):
         """Updates the star rating / text of a review."""
+        # Extract token
+        was_successful, session_token = extract_token(request)
+        response_object = {}
+        if not was_successful:
+            response_object["message"] = session_token
+            return response_object, 400
+        # Check token validity
+        user = get_user_by_session_token(session_token)
+        if user is None:
+            response_object["message"] = "Invalid token."
+            return response_object, 400
+        # Create / validate Review object
+        user_id = user.id
+        review = get_review_by_id(review_id)
+        if review is None:
+            reviews_namespace.abort(404, f"Review {review_id} does not exist")
+        elif user_id != review.user_id:
+            reviews_namespace.abort(400, f"Cannot edit other user's review")
+
         post_data = request.get_json()
         rating = post_data.get("rating")
         text = post_data.get("text")
         response_object = {}
-
         review = get_review_by_id(review_id)
         if not review:
             reviews_namespace.abort(404, f"Review {review_id} does not exist.")
-
-        update_review(review, rating, text)
+        new_review = update_review(review, rating, text)
 
         response_object["message"] = f"Review {review.id} was updated!"
-        return response_object, 200
+        print(new_review)
+        return marshal(new_review, review_fields), 200
 
     @reviews_namespace.response(200, "<review_id> was removed successfully!")
     @reviews_namespace.response(404, "Review <review_id> does not exist.")
@@ -107,6 +151,24 @@ class Reviews(Resource):
         """Deletes a review."""
         review = get_review_by_id(review_id)
         response_object = {}
+        # User validation before deleting
+        was_successful, session_token = extract_token(request)
+        response_object = {}
+        if not was_successful:
+            response_object["message"] = session_token
+            return response_object, 400
+        # Check token validity
+        user = get_user_by_session_token(session_token)
+        if user is None:
+            response_object["message"] = "Invalid token."
+            return response_object, 400
+        # Create / validate Review object
+        user_id = user.id
+        review = get_review_by_id(review_id)
+        if review is None:
+            reviews_namespace.abort(404, f"Review {review_id} does not exist")
+        elif user_id != review.user_id:
+            reviews_namespace.abort(400, f"Cannot delete other user's review")
 
         if not review:
             reviews_namespace.abort(404, f"Review {review_id} does not exist.")

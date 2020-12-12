@@ -1,5 +1,6 @@
 from flask import request
-from flask_restx import Namespace, Resource, fields
+from flask_restx import Namespace, Resource, fields, marshal
+import json
 
 from src.api.users.crud import (  # isort:skip
     get_all_users,
@@ -14,6 +15,7 @@ from src.api.users.crud import (  # isort:skip
 
 users_namespace = Namespace("users")
 
+user_fields = {"email": fields.String, "created_date": fields.DateTime}
 
 user = users_namespace.model(
     "User",
@@ -43,10 +45,22 @@ def extract_token(request):
 
 
 class Users(Resource):
-    @users_namespace.marshal_with(user, as_list=True)
+    @users_namespace.expect(user)
+    @users_namespace.response(400, "Unauthroized token.")
     def get(self):
         """Returns all users."""
-        return get_all_users(), 200
+        was_successful, session_token = extract_token(request)
+        response_object = {}
+        if not was_successful:
+            response_object["message"] = session_token
+            return response_object, 400
+        request_user = get_user_by_session_token(session_token)
+        if request_user is None:
+            response_object["message"] = "Unauthorized user."
+            return response_object, 400
+        users = get_all_users()
+        return marshal(users, user_fields), 200
+        # return list(map(lambda x: x.as_dict(), users)), 200
 
     @users_namespace.expect(user_post, validate=True)
     @users_namespace.response(201, "<user_email> was added!")
@@ -112,19 +126,16 @@ class UserSession(Resource):
             response_object["message"] = f"{str(e)}"
             return response_object, 400
 
-        token_set = json.dumps(
-            {
-                "session_token": user.session_token,
-                "session_expiration": str(user.session_expiration),
-                "update_token": user.update_token,
-            }
-        )
+        token_set = {
+            "session_token": user.session_token,
+            "session_expiration": str(user.session_expiration),
+            "update_token": user.update_token,
+        }
 
         return token_set, 200
 
 
 class UserLogin(Resource):
-    @users_namespace.marshal_with(user, as_list=True)
     def post(self):
         post_data = request.get_json()
         email = post_data.get("email")
@@ -141,13 +152,11 @@ class UserLogin(Resource):
             response_object["message"] = "Invalid credentials."
             return response_object, 400
 
-        return json.dumps(
-            {
-                "session_token": user.session_token,
-                "session_expiration": str(user.session_expiration),
-                "update_token": user.update_token,
-            }
-        )
+        return {
+            "session_token": user.session_token,
+            "session_expiration": str(user.session_expiration),
+            "update_token": user.update_token,
+        }
 
 
 users_namespace.add_resource(Users, "")
