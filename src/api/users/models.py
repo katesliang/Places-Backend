@@ -84,7 +84,7 @@ class User(db.Model):
             "email": self.email,
             "session_token": self.session_token,
             "update_token": self.update_token,
-            "favorites": len(self.favorites),
+            "favorites": list(map(lambda x: x.id, self.favorites)),
         }
 
 

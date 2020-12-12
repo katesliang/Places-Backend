@@ -189,8 +189,28 @@ class UserFavorites(Resource):
         return response_object, 201
 
 
+class UserFavoritesList(Resource):
+    @users_namespace.response(400, "Unauthroized token.")
+    def post(self):
+        was_successful, session_token = extract_token(request)
+        response_object = {}
+        if not was_successful:
+            response_object["message"] = session_token
+            return response_object, 400
+        request_user = get_user_by_session_token(session_token)
+        if request_user is None:
+            response_object["message"] = "Unauthorized user."
+            return response_object, 400
+
+        data = []
+        for pl in request_user.favorites:
+            data.append(pl.name)
+        return data, 201
+
+
 users_namespace.add_resource(Users, "")
 users_namespace.add_resource(UserLogin, "/login")
 users_namespace.add_resource(UserRegister, "/register")
 users_namespace.add_resource(UserSession, "/session")
 users_namespace.add_resource(UserFavorites, "/favorites/<int:place_id>")
+users_namespace.add_resource(UserFavoritesList, "/favorites")
