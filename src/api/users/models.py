@@ -23,6 +23,7 @@ class User(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     email = db.Column(db.String(128), nullable=False)
+    username = db.Column(db.String(128), nullable=False)
     password_digest = db.Column(db.String(255), nullable=False)
     created_date = db.Column(db.DateTime, default=func.now(), nullable=False)
     favorites = db.relationship(
@@ -39,6 +40,7 @@ class User(db.Model):
 
     def __init__(self, **kwargs):
         self.email = kwargs.get("email")
+        self.username = kwargs.get("username")
         self.password_digest = bcrypt.hashpw(
             kwargs.get("password").encode("utf-8"), bcrypt.gensalt(rounds=13)
         ).decode("utf-8")
@@ -73,7 +75,9 @@ class User(db.Model):
     def as_dict(self):
         return {
             "email": self.email,
+            "username": self.username,
             "session_token": self.session_token,
+            "session_expiration": str(self.session_expiration),
             "update_token": self.update_token,
             "favorites": list(map(lambda x: x.id, self.favorites)),
         }

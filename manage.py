@@ -21,8 +21,10 @@ def recreate_db():
 
 @cli.command("seed_db")
 def seed_db():
-    db.session.add(User(email="test123@cornell.edu", password="1234"))
-    db.session.add(User(email="testuser1234@cornell.edu", password="1234"))
+    db.session.add(User(email="test123@cornell.edu", password="1234", username="test1"))
+    db.session.add(
+        User(email="testuser1234@cornell.edu", password="1234", username="test2")
+    )
     db.session.commit()
 
     mdata = get_mapdata()
