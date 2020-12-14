@@ -1,26 +1,27 @@
 import requests
+import random
 
-location_types = [
-    "Blue",
-    "AllGender",
-    "Water",
-    "TCAT",
-    "Bikes",
-    "Charging",
-    "FoodServices",
-    "Parkmobile",
-]
+# location_types = [
+#     "Blue",
+#     "AllGender",
+#     "Water",
+# ]
 
-img_urls = {
-    "Blue": "https://cornell-places-assets.s3.amazonaws.com/bluelight.jpg",
-    "AllGender": "https://cornell-places-assets.s3.amazonaws.com/all_gender.jpg",
-    "Water": "https://cornell-places-assets.s3.amazonaws.com/water.jpg",
-    "TCAT": "https://cornell-places-assets.s3.amazonaws.com/tcat.jpg",
-    "Bikes": "https://cornell-places-assets.s3.amazonaws.com/bikes.jpg",
-    "Charging": "https://cornell-places-assets.s3.amazonaws.com/charging.jpeg",
-    "FoodServices": "https://cornell-places-assets.s3.amazonaws.com/food_service.jpg",
-    "Parkmobile": "https://cornell-places-assets.s3.amazonaws.com/park_mobile.jpg",
+type_dict = {
+    "Blue": "Blue Light",
+    "AllGender": "Bathroom",
+    "Water": "Water",
 }
+
+
+def get_img_url(ltype):
+    img_idx = random.randint(0, 2)
+    url_dict = {
+        "Blue": f"https://cornell-places-assets.s3.amazonaws.com/bluelight{img_idx}.jpg",
+        "AllGender": f"https://cornell-places-assets.s3.amazonaws.com/all_gender{img_idx}.jpg",
+        "Water": f"https://cornell-places-assets.s3.amazonaws.com/water{img_idx}.jpg",
+    }
+    return url_dict[ltype]
 
 
 def get_locationdata(ltype):
@@ -44,18 +45,18 @@ def get_locationdata(ltype):
     for data in dlist:
         ndata = dict()
         name = str(data.get("Name"))
-        if name is not None:
+        if (name is not None) and (ltype in type_dict):
             ndata["lat"] = data.get("Lat")
             ndata["lon"] = data.get("Lng")
             ndata["name"] = name
-            ndata["types"] = ltype
-            ndata["image_url"] = img_urls[ltype]
+            ndata["types"] = type_dict[ltype]
+            ndata["image_url"] = get_img_url(ltype)
             res.append(ndata)
     return res
 
 
 def get_mapdata():
     output = []
-    for tp in location_types:
+    for tp in type_dict.keys():
         output.extend(get_locationdata(tp))
     return output

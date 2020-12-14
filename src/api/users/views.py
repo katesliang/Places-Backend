@@ -21,6 +21,7 @@ from src.api.users.crud import (  # isort:skip
 users_namespace = Namespace("users")
 
 user_fields = {
+    "id": fields.Integer,
     "email": fields.String,
     "username": fields.String,
     "created_date": fields.DateTime,
@@ -123,6 +124,7 @@ class UserRegister(Resource):
     @users_namespace.response(400, "Invalid ID/PW.")
     @users_namespace.response(400, "User already exists.")
     def post(self):
+        "Registers a user with email, username and password"
         post_data = request.get_json()
         email = post_data.get("email")
         username = post_data.get("username")
@@ -145,6 +147,7 @@ class UserRegister(Resource):
 class UserSession(Resource):
     @users_namespace.response(400, "Invalid Token.")
     def post(self):
+        """Renvews user session token given the update token"""
         was_successful, update_token = extract_token(request)
         response_object = {}
 
@@ -169,13 +172,13 @@ class UserSession(Resource):
 
 class UserLogin(Resource):
     def post(self):
+        """Sign in with email and password"""
         post_data = request.get_json()
         email = post_data.get("email")
-        username = post_data.get("username")
         password = post_data.get("password")
         response_object = {}
 
-        if None in [email, username, password]:
+        if None in [email, password]:
             response_object["message"] = "Supply email, username and password."
             return response_object, 400
 
@@ -240,6 +243,7 @@ class UserFavorites(Resource):
 class UserFavoritesList(Resource):
     @users_namespace.response(400, "Unauthroized token.")
     def post(self):
+        """Shows the list of user favorites given the session token."""
         was_successful, session_token = extract_token(request)
         response_object = {}
         if not was_successful:
@@ -252,7 +256,7 @@ class UserFavoritesList(Resource):
 
         data = []
         for pl in request_user.favorites:
-            data.append(pl.id)
+            data.append(pl.serialize())
         return data, 200
 
 

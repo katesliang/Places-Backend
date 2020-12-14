@@ -15,14 +15,12 @@ class Review(db.Model):
     created_date = db.Column(db.DateTime, default=func.now(), nullable=False)
     rating = db.Column(db.Integer, nullable=False)
     text = db.Column(db.String, nullable=True)
-    # images = db.relationship("Image", cascade = "delete")
 
     def __init__(self, **kwargs):
         self.user_id = kwargs.get("user_id")
         self.place_id = kwargs.get("place_id")
         self.rating = kwargs.get("rating")
         self.text = kwargs.get("text")
-        # self.images = kwargs.get("images")
 
 
 if os.getenv("FLASK_ENV") == "development":
